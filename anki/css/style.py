@@ -1,15 +1,3 @@
-# style = """.card {
-#   font-family: Noto Serif;
-#   font-size: 20px;
-#   text-align: left;
-#   color: black;
-#   background-color: white;
-# 	max-width: 100%;
-# 	position: relative;
-# 	margin: auto;
-# 	padding: 1.5rem;
-# }
-# """
 
 style = """a {
 	text-decoration: underline;

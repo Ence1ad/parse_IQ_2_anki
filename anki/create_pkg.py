@@ -1,7 +1,7 @@
 import genanki
 
 from anki.create_deck import create_deck
-from router import path_to_apkg
+from util.router import path_to_apkg
 
 
 def create_anki_package(*, data, package_name='new_package'):

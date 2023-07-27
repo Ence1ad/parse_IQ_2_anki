@@ -40,3 +40,5 @@ def _get_questions_list(soup: BeautifulSoup) -> list[dict[str: str]]:
             dd["question"] = question.find('a').get_text()
             lst_of_question.append({"title": dd["title"], "question": dd["question"]})
     return lst_of_question
+
+

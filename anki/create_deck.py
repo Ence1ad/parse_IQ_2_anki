@@ -12,6 +12,6 @@ def create_deck(*, data, deck_name):
     deck = genanki.Deck(deck_id, deck_name)
     my_model = get_model()
     for dd in data[deck_name]:
-        note = genanki.Note(model=my_model, fields=[dd['Question'], '', dd['Back_Text'], '', dd['Additional Info'], ''])
+        note = genanki.Note(model=my_model, fields=[dd['Question'], '', dd['Back_Text'], '', '', ''])
         deck.add_note(note)
     return deck

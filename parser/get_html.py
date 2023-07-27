@@ -1,25 +1,21 @@
-from pathlib import Path
-
 import requests
+from requests import Response
 
-from router import path_to_html
+from util.router import BASE_URL
+from util.html_io import get_path_html_file, save_html_data
 
-BASE_URL = 'https://www.adaface.com/blog/'
 
-
-def get_html_file(slug):
-    url = BASE_URL + slug + '/'
-
-    r = requests.get(url)
-    if r.url != "https://www.adaface.com":
-        title = url.split('/')[-2] + '.html'
-        path = path_to_html
-        path_to_file = f'{path}/{title}'
-        if Path.exists(Path(path).joinpath(title)):
-            return path_to_file
-        else:
-            with open(file=path_to_file, mode='w', encoding='utf-8') as f:
-                f.write(r.text)
-            return path_to_file
+def save_html(dirname: str | None = None, slug: str | None = None) -> str:
+    if slug:
+        url = BASE_URL + slug
+        title = url.split('/')[-1] + '.html'
     else:
-        return
+        url = BASE_URL
+        title = url.split('.')[-2] + '.html'
+    path_to_html = get_path_html_file(title, dirname=dirname)
+    if path_to_html:
+        return path_to_html
+    else:
+        r: Response = requests.get(url)
+        if r.status_code == 200:
+            return save_html_data(dirname, title, r)
